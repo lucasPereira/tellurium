@@ -1,18 +1,29 @@
 package br.ufsc.lucas.pereira.tellurium.teste;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import br.ufsc.lucas.pereira.tellurium.Tellurium;
 
 public class TesteExemplo {
 
+	private Tellurium tellurium;
+
+	@Before
+	public void configurar() throws Exception {
+		tellurium = new Tellurium();
+	}
+
 	@Test
 	public void testar() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "drivers/geckodriver-linux64-0.18");
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver-linux64-2.32");
-		WebDriver selenium = new ChromeDriver();
-		selenium.navigate().to("https://google.com.br");
-		selenium.close();
+		tellurium.irPara("http://setic.ufsc.br");
+		tellurium.assegureTexto("#portal-title", "Superintendência de Governança Eletrônica e Tecnologia da Informação e Comunicação");
+	}
+
+	@After
+	public void finalizar() throws Exception {
+		tellurium.fechar();
 	}
 
 }
