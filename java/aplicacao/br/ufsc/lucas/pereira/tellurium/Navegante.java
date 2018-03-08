@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public final class Tellurium {
+public final class Navegante {
 
 	private WebDriver driver;
 
-	public Tellurium() {
+	public Navegante() {
 		System.setProperty("webdriver.gecko.driver", "drivers/geckodriver-linux64-0.18");
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver-linux64-2.32");
 		driver = new FirefoxDriver();

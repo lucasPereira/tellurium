@@ -1,18 +1,18 @@
-package br.ufsc.lucas.pereira.tellurium.teste;
+package br.ufsc.lucas.pereira.tellurium;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.lucas.pereira.tellurium.Tellurium;
+import br.ufsc.lucas.pereira.tellurium.Navegante;
 
 public class TesteExemplo {
 
-	private Tellurium tellurium;
+	private Navegante tellurium;
 
 	@Before
 	public void configurar() throws Exception {
-		tellurium = new Tellurium();
+		tellurium = new Navegante();
 	}
 
 	@Test

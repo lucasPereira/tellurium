@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="java"/>
+	<classpathentry kind="src" path="java/aplicacao"/>
+	<classpathentry kind="src" path="java/testes"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="jar/selenium/cglib-nodep-3.2.4.jar"/>
 	<classpathentry kind="lib" path="jar/selenium/client-combined-3.5.3-nodeps.jar"/>
@@ -37,5 +38,40 @@
 	<classpathentry kind="lib" path="jar/selenium/xalan-2.7.2.jar"/>
 	<classpathentry kind="lib" path="jar/selenium/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="jar/selenium/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/aopalliance-repackaged-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/cdi-api-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/el-api-2.2.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/hk2-api-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/hk2-locator-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/hk2-utils-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javassist-3.22.0-CR2.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.inject-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.json-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.json-api-1.1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.json.bind-api-1.0.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/javax.ws.rs-api-2.1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jaxb-api-2.2.7.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-client.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-common.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-container-servlet-core.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-container-servlet.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-hk2.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-media-jaxb.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-media-json-binding.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-media-sse.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-server.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jsr250-api-1.0.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/yasson-1.0.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/jersey-container-grizzly2-http-2.26.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/grizzly-http-server-2.4.3.jar"/>
+	<classpathentry kind="lib" path="jar/jersey/grizzly-http-server-core-2.4.3.jar"/>
 	<classpathentry kind="output" path="class"/>
 </classpath>
