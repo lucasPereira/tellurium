@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.lucas.pereira.tellurium.Navegante;
+import br.ufsc.lucas.pereira.tellurium.navegacao.Navegante;
 
 public class TesteExemplo {
 

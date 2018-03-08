@@ -1,4 +1,4 @@
-package br.ufsc.lucas.pereira.tellurium;
+package br.ufsc.lucas.pereira.tellurium.navegacao;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
