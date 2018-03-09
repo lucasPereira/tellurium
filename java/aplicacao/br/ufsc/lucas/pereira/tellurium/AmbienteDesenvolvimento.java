@@ -11,6 +11,11 @@ public class AmbienteDesenvolvimento implements Ambiente {
 	}
 
 	@Override
+	public Servicos servicos() {
+		return servicos;
+	}
+
+	@Override
 	public String enderecoBase() {
 		return "http://localhost:7000";
 	}
@@ -22,7 +27,7 @@ public class AmbienteDesenvolvimento implements Ambiente {
 
 	@Override
 	public Level nivelDeLog() {
-		return Level.FINE;
+		return Level.FINER;
 	}
 
 	@Override
@@ -31,8 +36,8 @@ public class AmbienteDesenvolvimento implements Ambiente {
 	}
 
 	@Override
-	public Servicos servicos() {
-		return servicos;
+	public String obterCaminhoDosArquivosEstaticos() {
+		return "estatico";
 	}
 
 }

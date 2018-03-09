@@ -14,4 +14,6 @@ public interface Ambiente {
 
 	public Level nivelDosLogsDoJersey();
 
+	public String obterCaminhoDosArquivosEstaticos();
+
 }

@@ -16,14 +16,16 @@ public class ServicosDesenvolvimento implements Servicos {
 		Handler console = new ConsoleHandler();
 		console.setLevel(ambiente.nivelDeLog());
 		console.setFormatter(new FormatadorDeLog());
-		Logger logger = Logger.getLogger("tellurium");
+		Logger logger = Logger.getLogger(Tellurium.class.getName());
 		logger.setLevel(ambiente.nivelDeLog());
 		logger.addHandler(console);
+		Logger loggerRaiz = Logger.getGlobal().getParent();
+		loggerRaiz.removeHandler(loggerRaiz.getHandlers()[0]);
 	}
 
 	@Override
 	public Logger logger() {
-		return Logger.getLogger("tellurium");
+		return Logger.getLogger(Tellurium.class.getName());
 	}
 
 }
