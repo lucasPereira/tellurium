@@ -1,5 +1,6 @@
 package br.ufsc.lucas.pereira.tellurium;
 
+import java.io.File;
 import java.util.logging.Level;
 
 public class AmbienteDesenvolvimento implements Ambiente {
@@ -36,8 +37,13 @@ public class AmbienteDesenvolvimento implements Ambiente {
 	}
 
 	@Override
-	public String obterCaminhoDosArquivosEstaticos() {
+	public String caminhoDosArquivosEstaticos() {
 		return "estatico";
+	}
+
+	@Override
+	public String caminhoDaPaginaInicial() {
+		return new File(caminhoDosArquivosEstaticos(), "index.html").getPath();
 	}
 
 }

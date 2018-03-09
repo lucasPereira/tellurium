@@ -21,7 +21,7 @@ public class RecursoEstaticos {
 
 	@GET
 	public Response obter(@PathParam("caminho") String caminho) throws IOException {
-		File arquivo = new File(ambiente.obterCaminhoDosArquivosEstaticos(), caminho);
+		File arquivo = new File(ambiente.caminhoDosArquivosEstaticos(), caminho);
 		if (!arquivo.exists()) {
 			throw new WebApplicationException(404);
 		}

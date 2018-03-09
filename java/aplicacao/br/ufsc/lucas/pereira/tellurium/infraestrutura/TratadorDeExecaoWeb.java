@@ -3,6 +3,7 @@ package br.ufsc.lucas.pereira.tellurium.infraestrutura;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
@@ -17,7 +18,9 @@ public class TratadorDeExecaoWeb implements ExceptionMapper<WebApplicationExcept
 	@Override
 	public Response toResponse(WebApplicationException excecao) {
 		ambiente.servicos().logger().finer(excecao.getMessage());
-		return excecao.getResponse();
+		Response respostaDaExecao = excecao.getResponse();
+		Status entidade = Status.fromStatusCode(respostaDaExecao.getStatus());
+		return Response.fromResponse(respostaDaExecao).type("text/html").entity(entidade.getReasonPhrase()).build();
 	}
 
 }

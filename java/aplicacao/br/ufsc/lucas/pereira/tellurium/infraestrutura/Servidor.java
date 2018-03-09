@@ -20,6 +20,7 @@ public class Servidor {
 
 	public Servidor(Ambiente ambiente) {
 		this.ambiente = ambiente;
+		URI uri = UriBuilder.fromUri(ambiente.enderecoBase()).build();
 		ResourceConfig configuracaoDeRecurso = new ResourceConfig();
 		configuracaoDeRecurso.packages(ambiente.pacoteDeRecursos());
 		configuracaoDeRecurso.register(new FiltroDeLog());
@@ -27,7 +28,6 @@ public class Servidor {
 		configuracaoDeRecurso.register(new LoggingFeature(ambiente.servicos().logger(), ambiente.nivelDosLogsDoJersey(), Verbosity.HEADERS_ONLY, LoggingFeature.DEFAULT_MAX_ENTITY_SIZE));
 		configuracaoDeRecurso.register(new TratadorDeExecao());
 		configuracaoDeRecurso.register(new TratadorDeExecaoWeb());
-		URI uri = UriBuilder.fromUri(ambiente.enderecoBase()).build();
 		servidor = GrizzlyHttpServerFactory.createHttpServer(uri, configuracaoDeRecurso, false);
 	}
 

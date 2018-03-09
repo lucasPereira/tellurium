@@ -18,13 +18,13 @@ public class FiltroDeLog implements ContainerRequestFilter, ContainerResponseFil
 
 	@Override
 	public void filter(ContainerRequestContext requisicao) throws IOException {
-		String mensagem = String.format("%s %s", requisicao.getMethod(), obterUri(requisicao));
+		String mensagem = String.format("%s /%s", requisicao.getMethod(), obterUri(requisicao));
 		ambiente.servicos().logger().fine(mensagem);
 	}
 
 	@Override
 	public void filter(ContainerRequestContext requisicao, ContainerResponseContext resposta) throws IOException {
-		String mensagem = String.format("%s %s %d", requisicao.getMethod(), obterUri(requisicao), resposta.getStatus());
+		String mensagem = String.format("%s /%s %d", requisicao.getMethod(), obterUri(requisicao), resposta.getStatus());
 		ambiente.servicos().logger().fine(mensagem);
 	}
 
