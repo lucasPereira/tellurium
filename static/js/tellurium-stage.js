@@ -5,9 +5,9 @@ class TelluriumStageElement extends TelluriumElement {
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
-		Tellurium.messenger.subscribe('page-change', (page) => {
+		Tellurium.messenger.subscribe('page-change', (event) => {
 			this.clearShadow();
-			this.load(page);
+			this.load(event.page);
 		});
 	}
 
