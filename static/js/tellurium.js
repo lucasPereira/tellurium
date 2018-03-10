@@ -58,10 +58,6 @@ class TelluriumElement extends HTMLElement {
 
 	constructor() {
 		super();
-		this.root = this.attachShadow({ mode: 'open' });
-		let template = document.currentScript.ownerDocument.querySelector('template');
-		let content = template.content.cloneNode(true);
-		this.root.appendChild(content);
 	}
 
 }
