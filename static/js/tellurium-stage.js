@@ -5,20 +5,17 @@ class TelluriumStageElement extends TelluriumElement {
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
-		let elementDocument = document.currentScript.ownerDocument;
-		let template = elementDocument.querySelector('template');
 		Tellurium.messenger.subscribe('page-change', (page) => {
 			this.clearShadow();
-			let content = template.content.cloneNode(true);
-			let link = content.querySelector('link');
-			this.appendChild(link);
-			link.addEventListener('load', () => {
-				let linkDocument = link.import;
-				linkDocument.body.childNodes.forEach((node) => this.shadowRoot.appendChild(node.cloneNode(true)));
-				this.removeChild(link);
-			});
-			link.href = page;
+			this.load(page);
 		});
+	}
+
+	load(page) {
+		let link = document.querySelector(`link[href="${page}"]`);
+		if (link && link.import) {
+			link.import.body.childNodes.forEach((node) => this.shadowRoot.appendChild(node.cloneNode(true)));
+		}
 	}
 
 	clearShadow() {
