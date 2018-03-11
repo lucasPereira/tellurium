@@ -5,10 +5,18 @@ class TelluriumStageElement extends TelluriumElement {
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
-		Tellurium.messenger.subscribe('page-change', (event) => {
+		Tellurium.messenger.subscribe('route-match', (message) => {
 			this.clearShadow();
-			this.load(event.page);
+			this.load(message.page);
 		});
+		Tellurium.messenger.subscribe('route-not-found', () => {
+			this.clearShadow();
+		});
+		let route = Tellurium.router.currentMatch;
+		if (route) {
+			this.clearShadow();
+			this.load(route.page);
+		}
 	}
 
 	load(page) {

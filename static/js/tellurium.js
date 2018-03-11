@@ -22,7 +22,9 @@ class TelluriumMessenger {
 
 	constructor() {
 		this.topics = {};
-		this.createTopic('page-change');
+		this.createTopic('uri-change');
+		this.createTopic('route-match');
+		this.createTopic('route-not-found');
 	}
 
 	createTopic(name) {
@@ -58,15 +60,59 @@ class TelluriumMessenger {
 class TelluriumHistory {
 
 	constructor(messenger) {
-		messenger.subscribe('page-change', (event) => {
-			if (!event.popstate) {
-				window.history.pushState(event, document.title, event.uri);
+		messenger.subscribe('uri-change', (message) => {
+			if (!message.popstate) {
+				window.history.pushState(message, document.title, message.uri);
 			}
 		});
 		window.addEventListener('popstate', (event) => {
-			event.state.popstate = true;
-			messenger.publish('page-change', event.state);
+			let message = event.state;
+			message.popstate = true;
+			messenger.publish('uri-change', message);
 		});
+	}
+
+}
+
+class TelluriumRouter {
+
+	constructor(messenger) {
+		this.messenger = messenger;
+		this.routes = [{
+			pattern: '/',
+			page: '/static/html/page-index.html'
+		}, {
+			pattern: '/user/(?<id>.+)',
+			page: '/static/html/page-test.html'
+		}, {
+			pattern: '/category/(?<category>.+)/user/(?<user>.+)',
+			page: '/static/html/page-test.html'
+		}, {
+			pattern: '/not-imported',
+			page: '/static/html/not-imported.html'
+		}];
+		messenger.subscribe('uri-change', (message) => {
+			this.match(message);
+		});
+		this.match({ uri: window.location.pathname });
+	}
+
+	match(message) {
+		let uri = message.uri;
+		let matched = false;
+		this.routes.forEach((route) => {
+			let regex = new RegExp(route.pattern);
+			let result = regex.exec(uri);
+			if (result && result[0] == uri) {
+				let match = { uri, page: route.page, parameters: result.groups };
+				this.messenger.publish('route-match', match);
+				this.currentMatch = match;
+				matched = true;
+			}
+		});
+		if (!matched) {
+			this.messenger.publish('route-not-found', message);
+		}
 	}
 
 }
@@ -82,3 +128,4 @@ class TelluriumElement extends HTMLElement {
 var Tellurium = {}
 Tellurium.messenger = new TelluriumMessenger();
 Tellurium.history = new TelluriumHistory(Tellurium.messenger);
+Tellurium.router = new TelluriumRouter(Tellurium.messenger);
