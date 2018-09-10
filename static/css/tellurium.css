@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+html {
+	font-size: 20px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+p, li, a, h1, h2, h3, h4, h5, button {
+	font-family: Arial, sans-serif;
+	font-size: 1rem;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	margin: 0;
+}

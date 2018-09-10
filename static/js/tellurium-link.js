@@ -4,7 +4,7 @@ class TelluriumLinkElement extends TelluriumElement {
 
 	constructor() {
 		super();
-		let shadow = this.attachShadow({ mode: 'open' });
+		let shadow = this.attachShadow({ mode: 'closed' });
 		let elementDocument = document.currentScript.ownerDocument;
 		let template = elementDocument.querySelector('template');
 		let content = template.content.cloneNode(true);

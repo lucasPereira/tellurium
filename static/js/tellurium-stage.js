@@ -4,7 +4,10 @@ class TelluriumStageElement extends TelluriumElement {
 
 	constructor() {
 		super();
-		this.attachShadow({ mode: 'open' });
+		let shadow = this.attachShadow({ mode: 'open' });
+		let elementDocument = document.currentScript.ownerDocument;
+		let template = elementDocument.querySelector('template');
+		let content = template.content.cloneNode(true);
 		Tellurium.messenger.subscribe('route-match', (message) => {
 			this.clearShadow();
 			this.load(message.page);
@@ -12,23 +15,23 @@ class TelluriumStageElement extends TelluriumElement {
 		Tellurium.messenger.subscribe('route-not-found', () => {
 			this.clearShadow();
 		});
-		let route = Tellurium.router.currentMatch;
-		if (route) {
-			this.clearShadow();
-			this.load(route.page);
-		}
+		shadow.appendChild(content);
 	}
 
 	load(page) {
 		let link = document.querySelector(`link[href="${page}"]`);
+		let container = this.shadowRoot.querySelector('div');
 		if (link && link.import) {
-			link.import.body.childNodes.forEach((node) => this.shadowRoot.appendChild(node.cloneNode(true)));
+			link.import.body.childNodes.forEach((node) => {
+				container.appendChild(node.cloneNode(true));
+			});
 		}
 	}
 
 	clearShadow() {
-		while (this.shadowRoot.hasChildNodes()) {
-			this.shadowRoot.removeChild(this.shadowRoot.firstChild);
+		let container = this.shadowRoot.querySelector('div');
+		while (container.firstChild) {
+			container.removeChild(container.firstChild);
 		}
 	}
 

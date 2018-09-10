@@ -4,13 +4,18 @@ class TelluriumTopic {
 
 	constructor() {
 		this.subscribers = [];
+		this.messages = [];
 	}
 
 	subscribe(handler) {
 		this.subscribers.push(handler);
+		this.messages.forEach((message) => {
+			handler(message);
+		});
 	}
 
 	publish(message) {
+		this.messages.push(message);
 		this.subscribers.forEach((handler) => {
 			handler(message);
 		});
