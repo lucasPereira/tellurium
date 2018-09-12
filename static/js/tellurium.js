@@ -128,6 +128,12 @@ class TelluriumElement extends HTMLElement {
 		super();
 	}
 
+	getImported(uri) {
+		let seletor = `link[rel="import"][href="${uri}"]`;
+		let imported = document.querySelector(seletor);
+		return imported.import;
+	}
+
 }
 
 var Tellurium = {}

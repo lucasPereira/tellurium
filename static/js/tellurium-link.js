@@ -4,9 +4,9 @@ class TelluriumLinkElement extends TelluriumElement {
 
 	constructor() {
 		super();
+		let imported = this.getImported('/static/html/tellurium-link.html');
 		let shadow = this.attachShadow({ mode: 'closed' });
-		let elementDocument = document.currentScript.ownerDocument;
-		let template = elementDocument.querySelector('template');
+		let template = imported.querySelector('template');
 		let content = template.content.cloneNode(true);
 		let link = content.querySelector('a');
 		link.textContent = this.textContent;

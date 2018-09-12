@@ -5,7 +5,7 @@ class TelluriumAnnouncementElement extends TelluriumElement {
 	constructor() {
 		super();
 		this.announcements = 0;
-		this.templateDocument = document.currentScript.ownerDocument;
+		this.templateDocument = this.getImported('/static/html/tellurium-announcement.html');
 		this.initializeTemplate();
 		this.startListeners();
 	}
