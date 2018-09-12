@@ -1,13 +1,22 @@
 <template>
 	<link rel="stylesheet" href="/static/css/tellurium.css" />
 	<link rel="stylesheet" href="/static/css/tellurium-announcement.css" />
-	<div>
-		<p>Tellurium</p>
-		<button>Expandir</button>
+	<div id="container" class="collapsed">
+		<div id="actions">
+			<button id="expand" title="Expand">Expand</button>
+			<button id="collapse" title="Collapse">Collapse</button>
+			<button id="clear" title="Clear">Clear</button>
+			<button id="close" title="Close">Close</button>
+		</div>
 	</div>
+</template>
+<template id="last-announcement">
+	<p></p>
+</template>
+<template id="announcements">
 	<ul></ul>
 </template>
 <template id="route-not-found">
-	<li>Página não encontrada.</li>
+	<li class="error">Página não encontrada.</li>
 </template>
 <script src="/static/js/tellurium-announcement.js"></script>
