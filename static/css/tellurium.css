@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url("/static/fonts/MaterialIcons-Regular.eot");
+	src: local('Material Icons'),
+		local('MaterialIcons-Regular'),
+		url("/static/fonts/MaterialIcons-Regular.woff2") format('woff2'),
+		url("/static/fonts/MaterialIcons-Regular.woff") format('woff'),
+		url("/static/fonts/MaterialIcons-Regular.ttf") format('truetype');
+}
+
 html {
 	font-size: 20px;
 }
@@ -13,6 +25,7 @@ p, li, a, h1, h2, h3, h4, h5, button {
 	font-family: Arial, sans-serif;
 	font-size: 1rem;
 	font-weight: normal;
+	line-height: 1;
 	margin: 0;
 	padding: 0;
 }

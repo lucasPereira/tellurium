@@ -4,7 +4,6 @@ class TelluriumAnnouncementElement extends TelluriumElement {
 
 	constructor() {
 		super();
-		this.announcements = 0;
 		this.templateDocument = this.getImported('/static/html/tellurium-announcement.html');
 		this.initializeTemplate();
 		this.startListeners();
@@ -19,55 +18,62 @@ class TelluriumAnnouncementElement extends TelluriumElement {
 
 	startListeners() {
 		Tellurium.messenger.subscribe('route-not-found', () => {
-			this.showError('template#route-not-found')
+			this.showError('#route-not-found')
 		});
-		this.shadowRoot.querySelector('button#collapse').addEventListener('click', () => {
-			this.shadowRoot.querySelector('div#container').classList.add('collapsed');
-			this.shadowRoot.querySelector('div#container').classList.remove('expanded');
+		Tellurium.messenger.subscribe('route-match', () => {
+			this.shadowRoot.querySelector('#last-announcement').textContent = '';
+			this.shadowRoot.querySelector('#container').classList.remove('success');
+			this.shadowRoot.querySelector('#container').classList.remove('error');
 		});
-		this.shadowRoot.querySelector('button#expand').addEventListener('click', () => {
-			this.shadowRoot.querySelector('div#container').classList.add('expanded');
-			this.shadowRoot.querySelector('div#container').classList.remove('collapsed');
+		this.shadowRoot.querySelector('#collapse').addEventListener('click', () => {
+			this.shadowRoot.querySelector('#container').classList.add('collapsed');
+			this.shadowRoot.querySelector('#container').classList.remove('expanded');
 		});
-		this.shadowRoot.querySelector('button#clear').addEventListener('click', () => {
-			if (this.announcements > 0) {
-				let containerElement = this.shadowRoot.querySelector('div#container');
-				let announcementsElement = this.shadowRoot.querySelector('div#container ul');
-				let lastAnnouncementElement = this.shadowRoot.querySelector('div#container p');
-				containerElement.removeChild(announcementsElement);
-				containerElement.removeChild(lastAnnouncementElement);
-				this.announcements = 0;
-			}
+		this.shadowRoot.querySelector('#expand').addEventListener('click', () => {
+			this.shadowRoot.querySelector('#container').classList.add('expanded');
+			this.shadowRoot.querySelector('#container').classList.remove('collapsed');
 		});
-		this.shadowRoot.querySelector('button#close').addEventListener('click', () => {
-			this.shadowRoot.querySelector('div#container').classList.add('closed');
+		this.shadowRoot.querySelector('#clear').addEventListener('click', () => {
+			this.shadowRoot.querySelector('#last-announcement').textContent = '';
+			this.shadowRoot.querySelector('#announcements').innerHTML = '';
+			this.shadowRoot.querySelector('#container').classList.remove('success');
+			this.shadowRoot.querySelector('#container').classList.remove('error');
+		});
+		this.shadowRoot.querySelector('#close').addEventListener('click', () => {
+			this.shadowRoot.querySelector('#container').classList.add('closed');
 		});
 	}
 
 	showError(templateSelector) {
-		if (this.announcements === 0) {
-			let announcementsTemplate = this.templateDocument.querySelector('template#announcements').content.cloneNode(true);
-			let lastAnnouncementTemplate = this.templateDocument.querySelector('template#last-announcement').content.cloneNode(true);
-			this.shadowRoot.querySelector('div#container').appendChild(lastAnnouncementTemplate);
-			this.shadowRoot.querySelector('div#container').appendChild(announcementsTemplate);
-		}
-		let containerElement = this.shadowRoot.querySelector('div#container');
-		let announcementsElement = this.shadowRoot.querySelector('div#container ul');
-		let lastAnnouncementElement = this.shadowRoot.querySelector('div#container p');
+		this.show(templateSelector, 'error');
+		this.shadowRoot.querySelector('#container').classList.remove('closed');
+		this.shadowRoot.querySelector('#container').classList.remove('success');
+		this.shadowRoot.querySelector('#container').classList.add('error');
+	}
+
+	showSuccess(templateSelector) {
+		this.show(templateSelector, 'success');
+		this.shadowRoot.querySelector('#container').classList.remove('closed');
+		this.shadowRoot.querySelector('#container').classList.remove('error');
+		this.shadowRoot.querySelector('#container').classList.add('success');
+	}
+
+	show(templateSelector, messageType) {
+		let announcementsElement = this.shadowRoot.querySelector('#announcements');
 		let announcementTemplate = this.templateDocument.querySelector(templateSelector).content.cloneNode(true);
-		if (this.announcements > 0) {
-			announcementsElement.insertBefore(announcementTemplate, announcementsElement.firstChild);
-		} else {
+		if (this.isEmpty()) {
 			announcementsElement.appendChild(announcementTemplate);
+		} else {
+			announcementsElement.insertBefore(announcementTemplate, announcementsElement.firstChild);
 		}
-		let announcementElement = this.shadowRoot.querySelector('div#container ul li:first-child');
-		lastAnnouncementElement.textContent = announcementElement.textContent;
-		containerElement.classList.remove('success');
-		lastAnnouncementElement.classList.remove('success');
-		containerElement.classList.add('error');
-		lastAnnouncementElement.classList.add('error');
-		containerElement.classList.remove('closed');
-		this.announcements++;
+		let announcementElement = this.shadowRoot.querySelector('#announcements li:first-child');
+		announcementElement.classList.add(messageType);
+		this.shadowRoot.querySelector('#last-announcement').textContent = announcementElement.textContent;
+	}
+
+	isEmpty() {
+		console.log(this.shadowRoot.querySelectorAll('#container ul li').length);
+		return this.shadowRoot.querySelectorAll('#container ul li').length === 0;
 	}
 
 }

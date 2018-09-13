@@ -2,20 +2,21 @@
 	<link rel="stylesheet" href="/static/css/tellurium.css" />
 	<link rel="stylesheet" href="/static/css/tellurium-announcement.css" />
 	<div id="container" class="collapsed">
-		<div id="actions">
-			<button id="expand" title="Expand">Expand</button>
-			<button id="collapse" title="Collapse">Collapse</button>
-			<button id="clear" title="Clear">Clear</button>
-			<button id="close" title="Close">Close</button>
+		<div id="status">
+			<p id="last-announcement"></p>
+			<div id="actions">
+				<tellurium-button-icon id="expand" title="Expand">expand_more</tellurium-button-icon>
+				<tellurium-button-icon id="collapse" title="Collapse">expand_less</tellurium-button-icon>
+				<tellurium-button-icon id="clear" title="Clear">delete_sweep</tellurium-button-icon>
+				<tellurium-button-icon id="close" title="Close">close</tellurium-button-icon>
+			</div>
 		</div>
+		<ul id="announcements"></ul>
 	</div>
 </template>
-<template id="last-announcement">
-	<p></p>
-</template>
-<template id="announcements">
-	<ul></ul>
+<template id="route-match">
+	<li>Página carregada.</li>
 </template>
 <template id="route-not-found">
-	<li class="error">Página não encontrada.</li>
+	<li>Página não encontrada.</li>
 </template>

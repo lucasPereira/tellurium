@@ -1,55 +1,64 @@
 @charset "utf-8";
 
-div#container {
+#container {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	background-color: #DDD;
+	background-color: #666;
 	color: #AAA;
 }
 
-div#container.closed {
+#container.closed {
 	display: none;
 }
 
-div#actions {
+#status {
 	display: flex;
 	flex-direction: row;
-	align-self: flex-end;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
 
-p,
-ul {
+#actions {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	padding: 5px;
+}
+
+#actions > * {
+	margin: 0 2px;
+}
+
+#last-announcement {
 	flex-grow: 1;
 }
 
-p,
-li {
+#last-announcement,
+#announcements li {
 	color: #FFF;
 	padding: 10px;
 }
 
-div#container.error,
-p.error,
-li.error {
+#container.error,
+#announcements li.error {
 	background-color: #F65656;
 }
 
-div#container.success,
-p.success,
-li.success {
+#container.success,
+#announcements li.success {
 	background-color: #29D885;
 }
 
-ul {
+#announcements {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-div#container.collapsed ul,
-div#container.collapsed button#collapse,
-div#container.expanded p,
-div#container.expanded button#expand {
+#container.collapsed #announcements,
+#container.collapsed #collapse,
+#container.expanded #last-announcement,
+#container.expanded #expand {
 	display: none;
 }
